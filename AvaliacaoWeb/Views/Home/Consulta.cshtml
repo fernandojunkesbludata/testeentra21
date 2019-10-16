@@ -1,0 +1,84 @@
+﻿@using AvaliacaoCore
+
+@{
+    ViewData["Title"] = "Consulta de cliente";
+}
+
+@section Scripts
+{
+  <script type="text/javascript" src="~/scripts/consulta.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+}
+
+<div class="container">
+  <h2>Consulta de Clientes</h2>
+  <div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nomeCliente">Nome contém</label>
+        <input type="text" class="form-control" id="nomeCliente" placeholder="Nome Completo">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="dataNasce">Nascido depois de</label>
+        <input type="text" class="form-control" id="dataNasceDe" 
+               onkeyup="Consulta.dataFormat(event)"
+               onkeypress="Consulta.dataFormat(event)"
+               onkeydown="Consulta.dataFormat(event)"
+               onchange="Consulta.dataFormat(event)"
+               placeholder="30/12/1950">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="dataNasce">Nascido antes de</label>
+        <input type="text" class="form-control" id="dataNasceAte" 
+               onkeyup="Consulta.dataFormat(event)"
+               onkeypress="Consulta.dataFormat(event)"
+               onkeydown="Consulta.dataFormat(event)"
+               onchange="Consulta.dataFormat(event)"
+               placeholder="30/12/1950">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="dataNasce">Cadastrado depois de</label>
+        <input type="text" class="form-control" id="dataCadDe" 
+               onkeyup="Consulta.dataFormat(event)"
+               onkeypress="Consulta.dataFormat(event)"
+               onkeydown="Consulta.dataFormat(event)"
+               onchange="Consulta.dataFormat(event)"
+               placeholder="30/12/1950">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="dataNasce">Cadastrado antes de</label>
+        <input type="text" class="form-control" id="dataCadAte" 
+               onkeyup="Consulta.dataFormat(event)"
+               onkeypress="Consulta.dataFormat(event)"
+               onkeydown="Consulta.dataFormat(event)"
+               onchange="Consulta.dataFormat(event)"
+               placeholder="30/12/1950">
+      </div>
+    </div>
+    <div class="form-buttons">
+      <button type="button" class="btn btn-primary" onclick="Consulta.pesquisar()">Pesquisar</button>
+    </div>
+  </div>
+  <table class="table">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">CPF</th>
+      <th scope="col">Data de Nascimento</th>
+      <th scope="col">Data de Cadastro</th>
+      @if(Configuracao.Instancia.EhSantaCatarina) {
+        <th id="colRG" scope="col">RG</th>
+      }
+      <th scope="col">Telefones</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <div id="paginador">
+  </div>
+</div>

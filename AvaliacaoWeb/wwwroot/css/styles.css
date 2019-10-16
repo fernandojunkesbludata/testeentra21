@@ -1,0 +1,23 @@
+﻿input.invalid {
+    border-color: red;
+}
+
+.tel-input {
+    padding-bottom: 5px;
+    width: 80%;
+    float: left
+}
+
+.tel-button {
+    padding-bottom: 5px;
+    width: 19%;
+    float: right
+}
+
+.form-buttons {
+    padding-top: 5px;
+}
+
+.btn-pagina {
+    margin: 3px;
+}

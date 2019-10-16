@@ -1,0 +1,83 @@
+﻿@using AvaliacaoCore
+
+@{
+  ViewData["Title"] = "Cadastro de cliente";
+}
+
+@section Scripts
+  {
+  <script type="text/javascript" src="~/scripts/cadastro.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+}
+
+<div class="container">
+  <h2>Cadastro de Clientes</h2>
+  <form>
+    <div class="container">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="nomeCliente">Nome</label>
+          <input type="text" class="form-control" id="nomeCliente" placeholder="Nome Completo">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="CPFCliente">CPF</label>
+          <input type="text" class="form-control" id="CPFCliente"
+                 onchange="Cadastro.cpfFormat(event)"
+                 onkeypress="Cadastro.cpfFormat(event)"
+                 onkeyup="Cadastro.cpfFormat(event)"
+                 onkeydown="Cadastro.cpfFormat(event)"
+                 placeholder="CPF (somente n&uacute;meros)">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="dataNasce">Data de Nascimento</label>
+          <input type="text" class="form-control" id="dataNasce"
+                 onchange="Cadastro.dataFormat(event)"
+                 onkeypress="Cadastro.dataFormat(event)"
+                 onkeyup="Cadastro.dataFormat(event)"
+                 onkeydown="Cadastro.dataFormat(event)"
+                 placeholder="30/12/1950">
+          @if (Configuracao.Instancia.EhParana)
+          {
+            <span style="display: none" id="dezoitoAnos">&Eacute; necess&aacute;rio que o cliente tenha mais de 18 anos.</span>
+          }
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label>Telefones de contato</label>
+          <div id="telefoneContainer">
+            <div class="tel-input">
+              <input type="text" class="form-control" name="telefone"
+                     onchange="Cadastro.telefoneFormat(event)"
+                     onkeypress="Cadastro.telefoneFormat(event)"
+                     onkeyup="Cadastro.telefoneFormat(event)"
+                     onkeydown="Cadastro.telefoneFormat(event)"
+                     placeholder="(99) 99999-9999">
+            </div>
+            <div class="tel-button">
+              <button style="width: 100%" type="button" class="btn" onclick="Cadastro.adicionarTelefone(event)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      @if(Configuracao.Instancia.EhSantaCatarina)
+      {
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label>RG</label>
+            <input type="text" class="form-control" id="RGCliente"
+                   onchange="Cadastro.formataRg(event)"
+                   onkeypress="Cadastro.formataRg(event)"
+                   onkeyup="Cadastro.formataRg(event)"
+                   onkeydown="Cadastro.formataRg(event)" 
+                   placeholder="">
+          </div>
+        </div>
+      }
+    </div>
+    <div class="form-buttons">
+      <button type="button" class="btn btn-primary" onclick="Cadastro.salvarCadastro(event)">Salvar</button>
+      <button type="button" class="btn" onclick="Cadastro.novoCadastro(event)">Novo</button>
+    </div>
+  </form>
+</div>
